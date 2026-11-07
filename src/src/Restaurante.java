@@ -16,11 +16,6 @@ public class Restaurante {
         this.clientes = new HashMap<>();
         this.livroVisitas = new LivroVisitas();
     }
-/* Vai para o Sistema
-    public boolean cadastroRestaurante(String nomeRestaurante, String prato){
-        return cadastroRestaurante;
-    }
-*/
     public String getPrato(){
         return prato;
     }

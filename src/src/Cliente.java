@@ -11,11 +11,6 @@ public class Cliente {
         this.pratoPreferido = "Prato preferido não definido";
     }
 
-    /*o metodo de cadastro vai para o sistema
-        public boolean cadastroCliente(String nomeCliente, String emailCliente) {
-            return cadastroCliente;
-        }
-    */
     public String getEmailCliente() {
         return emailCliente;
     }
