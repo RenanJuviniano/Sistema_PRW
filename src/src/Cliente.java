@@ -10,11 +10,12 @@ public class Cliente {
         this.gastos = 0.0;
         this.pratoPreferido = "Prato preferido não definido";
     }
-/*o metodo de cadastro vai para o sistema
-    public boolean cadastroCliente(String nomeCliente, String emailCliente) {
-        return cadastroCliente;
-    }
-*/
+
+    /*o metodo de cadastro vai para o sistema
+        public boolean cadastroCliente(String nomeCliente, String emailCliente) {
+            return cadastroCliente;
+        }
+    */
     public String getEmailCliente() {
         return emailCliente;
     }
@@ -33,7 +34,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        if (pratoPreferido.equals(pratoDaCasa)) {
+        if (!pratoPreferido.equals("Prato preferido não definido")) {
             return "Cliente: " + nomeCliente + "," + pratoPreferido;
         } else {
             return "Cliente: " + nomeCliente;

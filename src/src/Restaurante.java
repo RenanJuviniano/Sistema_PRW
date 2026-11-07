@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.HashMap;
 
@@ -47,16 +48,31 @@ public class Restaurante {
     public int hashCode(){
         return Objects.hash(nomeRestaurante);
     }
-    /*Ainda falta implementar:
-    public void registrarVisita(Cliente cliente, String data, String comentario)
 
-    public boolean contemCliente(String email)
+    public void registraVisita(Cliente cliente, String data, String comentario){
+        String email = cliente.getEmailCliente();
+        clientes.put(email, cliente);
+        livroVisitas.adicionarVisita(email, comentario, data);
+    }
 
-    public String[] listarClientes()
+    public boolean contemCliente(String email){
+        return clientes.containsKey(email);
+    }
 
-    public String[] listarLivroVisitas()
+    public String[] listarClientes(){
+        return clientes.keySet().toArray(new String[0]);
+    }
 
-    public String[] listarLivroVisitas(int quantidade)
-    */
-//para que o Sistema funcione corretamente.
+    public String[] listarLivroVisitas(){
+        return livroVisitas.listarInfoRegistradas();
+    }
+
+    public String[] listarLivroVisitas(int quantidade){
+        String[] visitas = livroVisitas.infoRecentes(quantidade);
+        int total = Math.min(quantidade, visitas.length);
+        if(total < 0){
+            total = 0;
+        }
+        return Arrays.copyOf(visitas, total);
+    }
 }

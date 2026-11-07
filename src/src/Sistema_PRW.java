@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.time.LocalDate;
 
 public class Sistema_PRW {
     private double precoFixo;
@@ -57,7 +58,7 @@ public class Sistema_PRW {
         if(restaurante == null){
             return new String[0];
         }
-        return restaurantes.listarClientes();
+        return restaurante.listarClientes();
     }
     // Registra o voto do cliente no prato do restaurante
     public String votarPratoPreferido(String emailCliente, String nomeRestaurante){
