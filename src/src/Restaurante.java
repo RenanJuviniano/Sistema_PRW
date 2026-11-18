@@ -8,6 +8,8 @@ public class Restaurante {
     private int votos;
     private HashMap<String, Cliente> clientes;
     private LivroVisitas livroVisitas;
+    private int totalVisitas;
+    private HashMap<String, Integer> visitasPorCliente;
 
     public Restaurante(String nomeRestaurante, String prato ){
         this.nomeRestaurante = nomeRestaurante;
@@ -15,6 +17,8 @@ public class Restaurante {
         this.votos = 0;
         this.clientes = new HashMap<>();
         this.livroVisitas = new LivroVisitas();
+        this.totalVisitas = 0;
+        this.visitasPorCliente = new HashMap<>();
     }
     public String getPrato(){
         return prato;
@@ -46,7 +50,13 @@ public class Restaurante {
 
     public void registraVisita(Cliente cliente, String data, String comentario){
         String email = cliente.getEmailCliente();
+
         clientes.put(email, cliente);
+
+        totalVisitas++;
+
+        visitasPorCliente.put(email, visitasPorCliente.getOrDefault(email, 0) + 1);
+
         livroVisitas.adicionarVisita(email, comentario, data);
     }
 
@@ -69,5 +79,16 @@ public class Restaurante {
             total = 0;
         }
         return Arrays.copyOf(visitas, total);
+    }
+    public int getTotalVisitas(){
+        return totalVisitas;
+    }
+
+    public int getTotalClientes(){
+        return clientes.size();
+    }
+
+    public HashMap<String, Integer> getVisitasPorCliente(){
+        return new HashMap<>(visitasPorCliente);
     }
 }

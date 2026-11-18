@@ -15,6 +15,10 @@ public class Cliente {
         return emailCliente;
     }
 
+    public String getNomeCliente(){
+        return nomeCliente;
+    }
+
     public void setPratoPreferido(String pratoPreferido) {
         this.pratoPreferido = pratoPreferido;
     }

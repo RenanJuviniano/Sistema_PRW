@@ -5,11 +5,13 @@ public class Sistema_PRW {
     private double precoFixo;
     private HashMap<String, Restaurante> restaurantes;
     private HashMap<String, Cliente> clientes;
+    private RelatoriosPRW relatorios;
 
     public Sistema_PRW(){
         this.precoFixo = 89.90;
         this.restaurantes = new HashMap<>();
         this.clientes = new HashMap<>();
+        this.relatorios = new RelatoriosPRW(restaurantes, clientes, precoFixo);
     }
     //Adiciona um restaurante, caso ele não esteja cadastrado
     public boolean adicionarRestaurante(String nome, String prato) {
@@ -31,7 +33,17 @@ public class Sistema_PRW {
     }
     //Registra visita sem comentario
     public void visitarRestaurante(String emailCliente, String nomeRestaurante){
-        visitarRestaurante(emailCliente, nomeRestaurante, null);
+
+        Cliente cliente = clientes.get(emailCliente);
+        Restaurante restaurante = restaurantes.get(nomeRestaurante);
+
+        if(cliente == null){
+            throw new IllegalArgumentException("Cliente não cadastrado!");
+        }
+
+        if(restaurante == null){
+            throw new IllegalArgumentException("Restaurante não cadastrado!");
+        }
     }
     //Registra visita com comentario
     public void visitarRestaurante(String emailCliente, String nomeRestaurante, String comentario){
@@ -113,5 +125,20 @@ public class Sistema_PRW {
         }
 
         return restaurante.listarLivroVisitas(num_recentes);
+    }
+
+    // Gera o relatório geral
+    public String relatorioGeral(){
+        return relatorios.relatorioGeral();
+    }
+
+    // Gera o relatório financeiro
+    public String relatorioFinanceiro(){
+        return relatorios.relatorioFinanceiro();
+    }
+
+    // Gera o relatório de engajamento
+    public String relatorioEngajamento(){
+        return relatorios.relatorioEngajamento();
     }
 }
